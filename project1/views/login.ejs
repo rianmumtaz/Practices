@@ -1,0 +1,39 @@
+<%- include ('partials/messages') %>
+<div class="row mt-5">
+  <div class="col-5 m-auto border p-4 rounded-3 border-4">
+    <form action="/users/login" method="POST">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="example@mail.com"
+          value="<%= typeof email != 'undefined' ? email : '' %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          value="<%= typeof password != 'undefined' ? password : '' %>"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</div>
+<div class="row justify-content-center mt-3">
+  <div class="col-1">
+    <a href="/users/register" class="btn btn-success">Register</a>
+  </div>
+  <div class="col-1">
+    <a href="/" class="btn btn-secondary">Back</a>
+  </div>
+</div>

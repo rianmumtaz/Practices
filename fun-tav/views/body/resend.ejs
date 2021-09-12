@@ -1,0 +1,24 @@
+<div class="bg-login-register">
+  <div class="container">
+    <div class="row text-light align-items-center justify-content-center">
+      <div class="col-auto bg-dark p-5 bg-opacity-50 text-center">
+        <form action="/user/resend" method="POST">
+          <p class="text-light mb-5 lead">Permintaan link aktivasi baru</p>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="d-grid mt-5 mb-3">
+            <button type="submit" class="btn btn-primary">Kirim Kembali</button>
+          </div>
+          <a class="text-light" href="/user/masuk">Kembali ke halaman login</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

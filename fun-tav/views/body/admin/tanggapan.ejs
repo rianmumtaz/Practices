@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="my-5">Feedback from visitor</h1>
+  <% if (feedbacks.length > 0) { %>
+  <div class="row g-3">
+    <% feedbacks.forEach(element => { %>
+    <div class="col-4 border me-3">
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>From:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.name %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Email:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.email %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Message:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.message %></p>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <% } else { %>
+  <p class="text-center">Belum ada tanggapan dari visitor</p>
+  <% } %>
+</div>

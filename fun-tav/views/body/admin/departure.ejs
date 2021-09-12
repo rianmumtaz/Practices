@@ -1,0 +1,111 @@
+<!-- modal_departure_add -->
+<%- include('./partials/modal_departure_add.ejs') %>
+
+<div class="container">
+  <h1 class="my-5">Departure Manager</h1>
+  <div class="row align-items-center justify-content-center">
+    <div class="col-10">
+      <form action="/admin/departure/page" method="GET">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-3">
+            <input
+              type="text"
+              name="title"
+              class="form-control"
+              placeholder="Title"
+              value="<%= typeof title !== 'undefined' ? title : '' %>"
+            />
+          </div>
+          <div class="col-3">
+            <% if (destinations.length > 0) { %>
+            <select name="destination" class="form-select">
+              <% destinations.forEach(element => { %>
+              <option value="<%= element._id %>" <% if (typeof destination !== "undefined" && destination == element._id) { %>selected<% } %>>
+                <%= element.place.name %>
+              </option>
+              <% }) %>
+            </select>
+            <% } else { %>
+            <select name="destination" class="form-select">
+              <option value="none" selected>None</option>
+            </select>
+            <% } %>
+          </div>
+          <div class="col-2">
+            <select name="sortBtn" class="form-select">
+                <option value="1" <% if (typeof sortBtn !== "undefined" && sortBtn === "1") { %>selected<% } %>>Asc</option>
+                <option value="-1" <%if (typeof sortBtn !== "undefined" && sortBtn === "-1") { %>selected<% } %>>Desc</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <select name="showLimit" class="form-select">
+                <option value="2" <%if (typeof showLimit !== "undefined" && showLimit === "2") { %>selected<% } %>>2</option>
+                <option value="5" <%if (typeof showLimit !== "undefined" && showLimit === "5") { %>selected<% } %>>5</option>
+                <option value="7" <%if (typeof showLimit !== "undefined" && showLimit === "7") { %>selected<% } %>>7</option>
+                <option value="10" <%if (typeof showLimit !== "undefined" && showLimit === "10") { %>selected<% } %>>10</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary">Show</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_departure_add">
+        Tambah Departure
+      </button>
+    </div>
+  </div>
+
+  <!-- content -->
+  <% if (typeof departures !== "undefined" ) { %>
+    <div>
+      <% if (departures.length > 0) { %>
+      <div class="my-5 pt-3">
+        <% departures.forEach(element => { %>
+        <div class="row align-items-center border-top border-3 py-2 px-3">
+          <div class="col-9">
+            <h3 class="fw-bold"><%= element.title %></h3>
+            <p class="lead"><%= element.itinerary[0].date.toUTCString().substr(0,16) %>
+                -</p>
+            <p class="lead"> <%= element.itinerary[element.itinerary.length -
+                1].date.toUTCString().substr(0,16) %></p>
+            <p>Availability: <%= element.availability %> trip</p>
+          </div>
+          <div class="col-3">
+            <a href="/admin/departure/edit/<%= element._id %>" class="btn btn-secondary">Edit</a>
+            <a href="/admin/departure/delete/<%= element._id %>" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <div class="text-center my-5 border-top border-3 pt-3">
+        <p>Data is not found</p>
+      </div>
+      <% } %>
+    </div>
+    <% } else { %>
+    <div class="text-center my-5 border-top border-3 pt-3">
+      <p>Please search for departures</p>
+    </div>
+    <% } %>
+
+    <!-- pagination -->
+    <% if (typeof departures !== "undefined") { %>
+        <div class="row">
+            <% if (departures.length > 0) {%>
+            <nav>
+            <ul class="pagination justify-content-center">
+                <% for (let i = 0; i < nop; i++) {%>
+                <li class="page-item <% if ( page == i ) { %>active<% } %>">
+                <a class="page-link" href="/admin/departure/page?page=<%= i %>&title=<%= title %>&destination=<%= destination %>&sortBtn=<%= sortBtn %>&showLimit=<%= showLimit %>"><%= i+1 %></a>
+                </li>
+                <% } %> 
+            </ul>
+            </nav>
+            <% } %>
+        </div>
+    <% } %>
+</div>

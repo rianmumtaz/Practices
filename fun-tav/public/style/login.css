@@ -1,0 +1,16 @@
+.bg-login-register {
+  background-image: url("/images/bg/login.jpg");
+  background-color: #cccccc;
+  height: 800px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  opacity: 0.9;
+}
+
+.bg-login-register::before {
+  display: block;
+  content: "";
+  height: 100px;
+}

@@ -1,0 +1,30 @@
+<div class="container">
+  <h1 class="text-center my-5">Semua Paket Liburan</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+      <li class="breadcrumb-item active">Semua Paket</li>
+    </ol>
+  </nav>
+  <% if (destinations.length > 0) { %>
+  <div class="row g-5 mb-5">
+    <% destinations.forEach(destination=> { %>
+    <div class="col-lg-3 col-sm-6 col-auto">
+      <a href="/liburan/destination/<%= destination._id %>" class="text-dark">
+        <div class="card">
+          <img
+            src="images/destination/west_europe.jpg"
+            class="card-img"
+            alt="..."
+          />
+          <div class="card-img-overlay bg-dark bg-opacity-25">
+            <h5 class="card-title text-light"><%= destination.place.name %></h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% }) %> <% } else { %>
+    <p class="text-center">Saat ini belum ada destinasi yang tersedia</p>
+    <% } %>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">FUNTAV</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <% if (role === "admin") { %>
+        <li class="nav-item">
+          <a class="nav-link active lead" href="/admin/destination">
+            Destination
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active lead" href="/admin/departure">
+            Departure
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active lead" href="/admin/custom_request">
+            Custom Request
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active lead" href="/admin/tanggapan">
+            Tanggapan
+          </a>
+        </li>
+        <% } %>
+        <li class="nav-item">
+          <a class="nav-link active lead" href="/"> Beranda </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active lead" href="#"> Promo </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active lead" href="/liburan"> Paket Liburan </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle active lead"
+            role="button"
+            data-bs-toggle="dropdown"
+          >
+            Bantuan
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Cek Pesanan</a></li>
+            <li>
+              <a class="dropdown-item" href="/page/tanggapan"
+                >Kirim Tanggapan</a
+              >
+            </li>
+            <li><a class="dropdown-item" href="/page/faq">FAQ</a></li>
+            <li>
+              <a class="dropdown-item" href="/page/tentang_kami"
+                >Tentang Kami</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="ms-md-4">
+        <% if (isLoggedIn) { %>
+        <a class="btn btn-danger active" href="/user/keluar"> Keluar </a>
+        <% } %> <% if ( !isLoggedIn ) { %>
+        <div class="input-group">
+          <a class="btn btn-outline-warning text-light" href="/user/daftar">
+            Daftar </a
+          ><a class="btn btn-warning text-dark" href="/user/masuk"> Masuk </a>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

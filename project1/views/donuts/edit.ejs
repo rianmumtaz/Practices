@@ -1,0 +1,49 @@
+<%- include ('../partials/messages') %>
+<div class="row mt-5">
+  <div class="col-5 m-auto border p-4 rounded-3 border-4">
+    <form
+      action="/donuts/edit/<%= donut._id %>?_method=PUT"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="hidden"
+        id="createdBy"
+        name="createdBy"
+        value="<%= typeof donut.createdBy != 'undefined' ? donut.createdBy : '' %>"
+      />
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="name"
+          class="form-control"
+          id="name"
+          name="name"
+          value="<%= typeof donut.name != 'undefined' ? donut.name : '' %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input
+          type="number"
+          class="form-control"
+          id="stock"
+          name="stock"
+          value="<%= typeof donut.stock != 'undefined' ? donut.stock : '' %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="cover" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" id="cover" name="cover" />
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+</div>
+<div class="row justify-content-end">
+  <div class="col-5">
+    <a class="btn btn-secondary" href="/donuts/home">Cancel</a>
+  </div>
+</div>

@@ -1,0 +1,266 @@
+<div class="container">
+  <nav>
+    <ol class="breadcrumb mt-5">
+      <li class="breadcrumb-item"><a href="/">Beranda</a></li>
+      <li class="breadcrumb-item"><a href="/liburan">Semua Paket</a></li>
+      <li class="breadcrumb-item">
+        <a href="/liburan/destination/<%= destination._id %>"
+          ><%= destination.place.name %></a
+        >
+      </li>
+      <li class="breadcrumb-item active"><%= departure.title %></li>
+    </ol>
+  </nav>
+  <h1><%= departure.title %></h1>
+  <img
+    class="img-fluid w-100"
+    src="../../images/bg/tentang_kami.jpg"
+    alt="..."
+  />
+  <h3 class="my-3">
+    Keberangkatan <%= departure.itinerary[0].date.toUTCString().substr(0,16) %>
+    - <%= departure.itinerary[departure.itinerary.length -
+    1].date.toUTCString().substr(0,16) %>
+  </h3>
+  <div class="row">
+    <div class="col-10">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            data-bs-toggle="tab"
+            data-bs-target="#ringkasan"
+            type="button"
+            role="tab"
+          >
+            Ringkasan
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            data-bs-toggle="tab"
+            data-bs-target="#itinerary"
+            type="button"
+            role="tab"
+          >
+            Itinerary
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            data-bs-toggle="tab"
+            data-bs-target="#custom_request"
+            type="button"
+            role="tab"
+          >
+            Custom Request
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content my-5">
+        <div class="tab-pane fade show active" id="ringkasan" role="tabpanel">
+          <div class="mb-3">
+            <h5 class="fw-bold">Rute Perjalanan</h5>
+            <% departure.itinerary.forEach(item => { %>
+            <p class="lh-1">
+              <strong>Hari <%= item.day %> :</strong> <%= item.title %>
+            </p>
+            <% }) %>
+          </div>
+          <div class="mb-3">
+            <h5 class="fw-bold">Harga</h5>
+            <div class="row">
+              <div class="col">
+                <p class="lead">Dewasa</p>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- Twin Sharing</p>
+                  <p class="col"><%= departure.price.adult.twin %></p>
+                </div>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- Single</p>
+                  <p class="col"><%= departure.price.adult.single %></p>
+                </div>
+                <p class="lead">Anak-anak</p>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- Twin Sharing</p>
+                  <p class="col"><%= departure.price.kids.twin %></p>
+                </div>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- Extra Bed</p>
+                  <p class="col"><%= departure.price.kids.extra %></p>
+                </div>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- No Bed</p>
+                  <p class="col"><%= departure.price.kids.no_bed %></p>
+                </div>
+              </div>
+              <div class="col">
+                <p class="lead">Biaya Lainnya</p>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- Airport Tax and Fuel</p>
+                  <p class="col"><%= departure.price.other.airport %></p>
+                </div>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- Visa</p>
+                  <p class="col"><%= departure.price.other.visa %></p>
+                </div>
+                <div class="row justify-content-center border-bottom">
+                  <p class="col">- Ppn</p>
+                  <p class="col"><%= departure.price.other.ppn %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="itinerary" role="tabpanel">
+          <% departure.itinerary.forEach(item => { %>
+          <div class="row mx-5 border-bottom">
+            <div class="col-2 text-center py-3">
+              <h4>Hari</h4>
+              <h5><%= item.day %></h5>
+            </div>
+            <div class="col-9 py-3">
+              <h4 class="text-success"><%= item.title %></h4>
+              <p class="text-danger">
+                <%= item.date.toUTCString().substr(0,16) %>
+              </p>
+              <p><%= item.description %></p>
+              <p>
+                <small
+                  >Makan: <% if (item.eat.breakfast) { %>Pagi, <% } %><% if
+                  (item.eat.lunch) { %>Siang, <% } %><% if (item.eat.dinner) {
+                  %>Malam<% } %></small
+                >
+              </p>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <div class="tab-pane fade" id="custom_request" role="tabpanel">
+          <form action="/order/custom/<%= departure._id %>" method="POST">
+            <div class="row mb-3">
+              <div class="col-3">
+                <select name="title" class="form-select">
+                  <option value="Mr.">Mr.</option>
+                  <option value="Mrs.">Mrs.</option>
+                  <option value="Ms.">Ms.</option>
+                </select>
+              </div>
+              <div class="col-9">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  required
+                />
+              </div>
+            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              class="form-control mb-3"
+              required
+            />
+
+            <div class="row">
+              <div class="col-6">
+                <label class="form-label">How much budget do you have?</label>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Rp</span>
+                  <input
+                    type="text"
+                    name="budget"
+                    class="form-control"
+                    placeholder="ex: 25.000.000"
+                  />
+                  <span class="input-group-text">.00</span>
+                </div>
+
+                <label class="form-label"
+                  >What transportation do you want to use?</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  name="transportation"
+                  placeholder="ex: Saya lebih nyaman menggunakan pesawat"
+                />
+
+                <label class="form-label"
+                  >Do you want to stay in Hotel / Lounge?</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  name="hotel"
+                  placeholder="ex: Saya prefer hotel"
+                />
+
+                <label class="form-label"
+                  >Do you have any foods reference / foods that you don’t
+                  want?</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  name="food"
+                  placeholder="ex: Saya alergi seafood"
+                />
+              </div>
+              <div class="col-6">
+                <label class="form-label"
+                  >Do you prefer a tight schedule or loose schedule?</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  name="schedule"
+                  placeholder="ex: Saya prefer banyak waktu bebas"
+                />
+
+                <label class="form-label"
+                  >Do you want to focus on Culinary / Cultural?</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  name="culinary"
+                  placeholder="ex: Saya mau eksplor kuliner"
+                />
+
+                <label class="form-label"
+                  >How many people will go with you?</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  name="people"
+                  placeholder="ex: 2 dewasa dan 2 anak-anak"
+                />
+
+                <label class="form-label"
+                  >Do you have any medical records?</label
+                >
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  name="medical"
+                  placeholder="ex: Saya tidak bisa terlalu lelah"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 border-start">
+      <a href="#" class="btn btn-warning text-light mb-5">Pesan sekarang</a>
+    </div>
+  </div>
+</div>

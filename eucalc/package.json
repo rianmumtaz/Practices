@@ -1,0 +1,31 @@
+{
+  "name": "eucalc",
+  "version": "1.0.0",
+  "description": "EUCALC is a calculator designed to simulate a simple solar water heating system for both residential and commercial use.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "client": "cd client && npm start",
+    "server": "nodemon app.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Rian Mumtaz",
+  "license": "ISC",
+  "keywords": [
+    "eucalc",
+    "calculator",
+    "solar water heater"
+  ],
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.6",
+    "nodemailer": "^6.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}

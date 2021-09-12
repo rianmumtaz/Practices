@@ -1,0 +1,37 @@
+{
+  "name": "fun-tav",
+  "version": "1.0.0",
+  "description": "Tours & Travel Web Apps",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js"
+  },
+  "author": "Rian Mumtaz",
+  "license": "ISC",
+  "keywords": [
+    "funtav",
+    "tours",
+    "travel"
+  ],
+  "dependencies": {
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.7",
+    "nodemailer": "^6.6.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.12"
+  }
+}

@@ -1,0 +1,55 @@
+<div class="bg-login-register">
+  <div class="container">
+    <div class="row text-light align-items-center">
+      <div class="col-md-5 col-auto bg-dark p-5 bg-opacity-50">
+        <form action="/user/masuk" method="POST">
+          <p class="text-light mb-5 lead">Masuk ke akun anda</p>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="input-group mb-3">
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="password"
+              placeholder="Password"
+              required
+              maxlength="50"
+            />
+            <button type="button" class="btn badge" id="btn_password">
+              show
+            </button>
+          </div>
+          <!-- <div class="row mb-5">
+            <div class="col-auto ms-auto">
+              <a href="#" class="text-light">lupa kata sandi?</a>
+            </div>
+          </div> -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Masuk</button>
+          </div>
+        </form>
+        <div class="mt-3 text-center">
+          <p>
+            Tidak menerima email aktivasi?
+            <a class="text-light" href="/user/resend">Kirim ulang</a>
+          </p>
+          <p>
+            Belum daftar? <a class="text-light" href="/user/daftar">Daftar</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-7 col-auto ps-5 d-none d-md-block">
+        <p class="fs-1 fw-bold">Fun Tav Tour & Travel</p>
+        <p class="fs-3 fw-light">Gateway to great destination</p>
+      </div>
+    </div>
+  </div>
+</div>

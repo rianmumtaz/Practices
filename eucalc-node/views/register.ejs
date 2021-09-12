@@ -1,0 +1,40 @@
+<h1 class="my-5 text-center">Register</h1>
+<div class="row justify-content-center">
+  <div class="col-8 col-lg-4 col-md-5">
+    <form action="/register" method="POST">
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Name" name="name"
+        required <% if (typeof form !== "undefined") { %> value="<%= form.name
+        %>" <% } %> />
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Email"
+        name="email" required <% if (typeof form !== "undefined") { %>
+        value="<%= form.email %>" <% } %> />
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          name="password"
+          required
+          maxlength="50"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Confirm Password"
+          name="confirmPassword"
+          required
+          maxlength="50"
+        />
+      </div>
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

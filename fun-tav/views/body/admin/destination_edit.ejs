@@ -1,0 +1,40 @@
+<div class="container">
+  <h1 class="my-5">Tambah Destinasi</h1>
+
+  <form
+    action="/admin/destination/edit/<%= destination._id %>?_method=PUT"
+    method="POST"
+  >
+    <div class="mx-5 px-5">
+      <div class="mb-3">
+        <label class="form-label">Nama Destinasi</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          required
+          value="<%= destination.place.name %>"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Kategori</label>
+        <select name="category" class="form-select">
+          <option value="domestic" <% if (destination.place.domestic) { %>
+            selected <% } %>>Domestic
+          </option>
+          <option value="non_domestic" <% if (!destination.place.domestic) { %>
+            selected <% } %>>Non Domestic
+          </option>
+        </select>
+      </div>
+      <div class="row my-3 justify-content-end">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Edit</button>
+          <a type="button" class="btn btn-secondary" href="/admin/destination">
+            Cancel
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

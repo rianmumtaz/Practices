@@ -1,0 +1,39 @@
+<%- include ('../partials/messages') %>
+<div class="row mt-5">
+  <div class="col-5 m-auto border p-4 rounded-3 border-4">
+    <form action="/donuts/add" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          type="name"
+          class="form-control"
+          id="name"
+          name="name"
+          value="<%= typeof name != 'undefined' ? name : '' %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input
+          type="number"
+          class="form-control"
+          id="stock"
+          name="stock"
+          value="<%= typeof stock != 'undefined' ? stock : '' %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="cover" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" id="cover" name="cover" />
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+</div>
+<div class="row justify-content-end">
+  <div class="col-5">
+    <a class="btn btn-secondary" href="/donuts/home">Cancel</a>
+  </div>
+</div>

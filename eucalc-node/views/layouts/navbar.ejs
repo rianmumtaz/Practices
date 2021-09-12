@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary sticky-top">
+  <div class="container">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/"> Home </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/#contactMe"> Contact Me </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/database"> Database </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/simulate"> Simulate </a>
+        </li>
+      </ul>
+      <% if ( isLoggedIn ) { %>
+      <a class="nav-link btn btn-danger active" href="/logout"> Logout </a>
+      <% } %> <% if (! isLoggedIn ) { %>
+      <a class="nav-link btn btn-dark active" href="/login"> Login </a>
+      <% } %>
+    </div>
+  </div>
+</nav>

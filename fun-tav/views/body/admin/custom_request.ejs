@@ -1,0 +1,93 @@
+<div class="container">
+  <h1 class="my-5">Custom Request from visitor</h1>
+  <% if (customRequests.length > 0) { %>
+  <div class="row">
+    <% customRequests.forEach(element => { %>
+    <div class="col-4 border mb-3">
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>From:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.sender %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Email:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.email %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Budget:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.budget %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Transportation:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.transportation %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Hotel:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.hotel %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Food:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.food %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Schedule:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.schedule %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Culinary:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.culinary %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>People:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.people %></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-4">
+          <p>Medical:</p>
+        </div>
+        <div class="col-9">
+          <p><%= element.medical %></p>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <% } else { %>
+  <p class="text-center">Belum ada custom request dari visitor</p>
+  <% } %>
+</div>

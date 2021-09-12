@@ -1,0 +1,103 @@
+<!-- modal_destination_add -->
+<%- include('./partials/modal_destination_add.ejs') %>
+
+<div class="container">
+  <h1 class="my-5">Destination Manager</h1>
+  <div class="row align-items-center justify-content-center">
+    <div class="col-10">
+      <form action="/admin/destination/page" method="GET">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-3">
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              placeholder="Name"
+              value="<%= typeof name !== 'undefined' ? name : '' %>"
+            />
+          </div>
+          <div class="col-3">
+            <select name="domestic" class="form-select">
+              <option value="true" <% if (typeof domestic !== "undefined" && domestic === "true") { %>selected<% } %>>Domestic</option>
+              <option value="false" <% if (typeof domestic !== "undefined" && domestic === "false") { %>selected<% } %>>Non Domestic</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <select name="sortBtn" class="form-select">
+                <option value="1" <% if (typeof sortBtn !== "undefined" && sortBtn === "1") { %>selected<% } %>>Asc</option>
+                <option value="-1" <%if (typeof sortBtn !== "undefined" && sortBtn === "-1") { %>selected<% } %>>Desc</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <select name="showLimit" class="form-select">
+                <option value="2" <%if (typeof showLimit !== "undefined" && showLimit === "2") { %>selected<% } %>>2</option>
+                <option value="5" <%if (typeof showLimit !== "undefined" && showLimit === "5") { %>selected<% } %>>5</option>
+                <option value="7" <%if (typeof showLimit !== "undefined" && showLimit === "7") { %>selected<% } %>>7</option>
+                <option value="10" <%if (typeof showLimit !== "undefined" && showLimit === "10") { %>selected<% } %>>10</option>
+            </select>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary">Show</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_destination_add">
+        Tambah Destinasi
+      </button>
+    </div>
+  </div>
+
+  <!-- content -->
+  <% if (typeof destinations !== "undefined" ) { %>
+  <div>
+    <% if (destinations.length > 0) { %>
+    <div class="my-5 pt-3">
+      <% destinations.forEach(element => { %>
+      <div class="row align-items-center border-top border-3 py-2 px-3">
+        <div class="col-9">
+          <h3 class="fw-bold"><%= element.place.name %></h3>
+          <% if (element.place.domestic) { %>
+          <p class="lead">Domestic</p>
+          <% } else { %>
+          <p class="lead">Non Domestic</p>
+          <% } %>
+          <p><%= element.departures.length %> Keberangkatan</p>
+        </div>
+        <div class="col-3">
+          <a href="/admin/destination/edit/<%= element._id %>" class="btn btn-secondary">Edit</a>
+          <a href="/admin/destination/delete/<%= element._id %>" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <% } else { %>
+    <div class="text-center my-5 border-top border-3 pt-3">
+      <p>Data is not found</p>
+    </div>
+    <% } %>
+  </div>
+  <% } else { %>
+  <div class="text-center my-5 border-top border-3 pt-3">
+    <p>Please search for destination</p>
+  </div>
+  <% } %>
+
+  <!-- pagination -->
+  <% if (typeof destinations !== "undefined") { %>
+    <div class="row">
+        <% if (destinations.length > 0) {%>
+        <nav>
+          <ul class="pagination justify-content-center">
+            <% for (let i = 0; i < nop; i++) {%>
+            <li class="page-item <% if ( page == i ) { %>active<% } %>">
+              <a class="page-link" href="/admin/destination/page?page=<%= i %>&name=<%= name %>&domestic=<%= domestic %>&sortBtn=<%= sortBtn %>&showLimit=<%= showLimit %>"><%= i+1 %></a>
+            </li>
+            <% } %> 
+          </ul>
+        </nav>
+        <% } %>
+    </div>
+  <% } %>
+</div>

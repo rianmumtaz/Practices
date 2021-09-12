@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="text-center my-5">Rekomendasi Liburan</h1>
+  <% if (departures.length > 0) { %>
+  <div class="row g-5">
+    <% departures.forEach(departure=> { %>
+    <div class="col-lg-3 col-sm-6 col-auto">
+      <a
+        href="/liburan/departure/<%= departure._id %>"
+        class="text-decoration-none text-dark"
+      >
+        <div class="card">
+          <img
+            src="../images/destination/west_europe.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= departure.price.total %></h5>
+            <p class="card-text"><%= departure.title %></p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% }) %>
+  </div>
+  <% } else { %>
+  <p class="text-center">Belum ada produk yang tersedia</p>
+  <% } %>
+</div>

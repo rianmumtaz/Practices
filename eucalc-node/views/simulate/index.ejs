@@ -1,0 +1,66 @@
+<!-- location -->
+<section class="mt-5" id="location">
+  <div class="container">
+    <div class="card bg-secondary text-light">
+      <h2 class="card-header">Location</h2>
+
+      <div class="card-body">
+        <form action="/simulate/search" method="POST" onsubmit="showLoading()">
+          <div class="input-group input-group-sm mb-3">
+            <input
+              type="text"
+              class="form-control"
+              name="searchMap"
+              placeholder="Search city, state..."
+            />
+            <button class="btn btn-dark" type="submit">
+              <div
+                class="spinner-border spinner-border-sm d-none mx-4"
+                role="status"
+              ></div>
+              <i class="bi bi-search mx-4"></i>
+            </button>
+          </div>
+        </form>
+
+        <div class="row justify-content-center">
+          <div id="map" style="max-width: 75%; height: 250px"></div>
+        </div>
+
+        <%- include('../partials/tableMet.ejs') %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- collector -->
+<section class="mt-5" id="collector">
+  <div class="container">
+    <div class="card bg-secondary text-light">
+      <h2 class="card-header">Collector</h2>
+      <div class="card-body">
+        <h3 class="card-title">Special title treatment</h3>
+        <p class="card-text">
+          With supporting text below as a natural lead-in to additional content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- usage -->
+<section class="mt-5" id="usage">
+  <div class="container">
+    <div class="card bg-secondary text-light">
+      <h2 class="card-header">Usage</h2>
+      <div class="card-body">
+        <h3 class="card-title">Special title treatment</h3>
+        <p class="card-text">
+          With supporting text below as a natural lead-in to additional content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</section>

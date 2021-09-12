@@ -1,0 +1,154 @@
+<% if (typeof H !== "undefined") { %>
+<form id="formNasa" action="/simulate/api/nasa" method="POST">
+  <div class="row align-items-center">
+    <label class="col-auto">Latitude :</label>
+
+    <div class="col-auto">
+      <% if (typeof lat !== "undefined") { %>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lat"
+        id="lat"
+        value="<%= lat %> "
+        style="color: white"
+      />
+      <% } else {%>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lat"
+        id="lat"
+        style="color: white"
+      />
+      <% } %>
+    </div>
+  </div>
+
+  <div class="row align-items-center">
+    <label class="col-auto">Longitude :</label>
+
+    <div class="col-auto">
+      <% if (typeof lng !== "undefined") { %>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lng"
+        id="lng"
+        value="<%= lng %> "
+        style="color: white"
+      />
+      <% } else { %>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lng"
+        id="lng"
+        style="color: white"
+      />
+      <% } %>
+    </div>
+  </div>
+</form>
+
+<table class="table table-borderless table-sm table-primary table-hover text-center">
+  <thead>
+    <tr>
+      <th scope="col" rowspan="2">Month</th>
+      <th scope="col">H</th>
+      <th scope="col">Ta</th>
+      <th scope="col">w</th>
+      <th scope="col">q</th>
+      <th scope="col">K<sub>T</sub></th>
+      <th scope="col">&#961<sub>g</sub></th>
+    </tr>
+    <tr>
+      <th scope="col"><small>(kWh/m^2/day)</small></th>
+      <th scope="col"><small>(Celcius)</small></th>
+      <th scope="col"><small>(m/s)</small></th>
+      <th scope="col"><small>(g/kg)</small></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% month.forEach((element, index) => { %>
+    <tr>
+      <th scope="row"><%=element%></th>
+      <td><%=H[index]%></td>
+      <td><%=Ta[index]%></td>
+      <td><%=w[index]%></td>
+      <td><%=q[index]%></td>
+      <td><%=KT[index]%></td>
+      <td><%=rhog[index]%></td>
+    </tr>
+    <%})%>
+  </tbody>
+</table>
+<div><small class="me-3">H :</small><small>Horizontal Global Radiation</small></div>
+<div><small class="me-3">Ta :</small><small>Ambient Temperature</small></div>
+<div><small class="me-3">w :</small><small>Wind Speed</small></div>
+<div><small class="me-3">q :</small><small>Specific Humidity</small></div>
+<div><small class="me-3">K<sub>T</sub> :</small><small>Clearness Index</small></div>
+<div><small class="me-3">&#961<sub>g</sub> :</small><small>Albedo</small></div>
+<% } else { %>
+<form class="d-none" id="formNasa" action="/simulate/api/nasa" method="POST">
+  <div class="row align-items-center">
+    <label class="col-auto form-label">Latitude :</label>s
+
+    <div class="col-auto">
+      <% if (typeof lat !== "undefined") { %>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lat"
+        id="lat"
+        value="<%= lat %> "
+        style="color: white"
+      />
+      <% } else {%>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lat"
+        id="lat"
+        style="color: white"
+      />
+      <% } %>
+    </div>
+  </div>
+
+  <div class="row align-items-center">
+    <label class="col-auto form-label">Longitude :</label>
+
+    <div class="col-auto">
+      <% if (typeof lng !== "undefined") { %>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lng"
+        id="lng"
+        value="<%= lng %> "
+        style="color: white"
+      />
+      <% } else { %>
+      <input
+        class="form-control-plaintext"
+        type="text"
+        readonly
+        name="lng"
+        id="lng"
+        style="color: white"
+      />
+      <% } %>
+    </div>
+  </div>
+</form>
+<% } %>

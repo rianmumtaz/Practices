@@ -1,0 +1,129 @@
+<section class="bg-primary p-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col d-none d-md-block">
+        <img class="w-75 img-fluid" src="img/ICON/web_hi_res_512.png" alt="" />
+      </div>
+      <div class="col text-md-end text-center text-light lead">
+        <h2 class="mb-4">
+          EUCALC
+          <span class="text-warning"> Solar Water Heater Calculator </span>
+        </h2>
+        <p>
+          Designed to simulate a simple solar water heating system for both
+          residential and commercial use. It requires an input of monthly
+          meteorological data, solar water heating system configuration, solar
+          collector model, and load profile to obtain monthly solar fraction.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-5 bg-dark text-light">
+  <div class="container">
+    <h1 class="text-center text-warning">Meteorological Data</h1>
+    <div class="row align-items-center g-5">
+      <div class="col-md lead text-md-end text-center">
+        <p>
+          In terms of estimating solar water heating efficiency, we need to know
+          how much solar irradiation that received in the tested location. With
+          the meteorological data derived from NASA Prediction Of Worldwide
+          Energy Resources, EUCALC can calculate how much solar energy that can
+          be harnessed by a solar collector in a certain location.
+        </p>
+      </div>
+      <div class="col-md">
+        <img src="img/location.svg" class="img-fluid" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-secondary p-5 text-light">
+  <div class="container">
+    <h1 class="text-center text-warning">Solar Collector</h1>
+    <div class="row align-items-center g-5">
+      <div class="col-md p-5">
+        <img
+          src="img/solarPanel.jpg"
+          class="img-fluid rounded-circle opacity-75"
+          alt=""
+        />
+      </div>
+      <div class="col-md lead text-md-end text-center">
+        <p>
+          EUCALC uses the f-chart method in order to calculate the monthly solar
+          fraction. The calculation results is more suitable for
+          standard-active-direct solar water heating system.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-5 bg-dark text-light">
+  <div class="container">
+    <h1 class="text-center text-warning">Load</h1>
+    <div class="row align-items-center g-5">
+      <div class="col-md lead text-md-end text-center">
+        <p>
+          EUCALC needs the information about how much hot water that being used
+          to calculate the performance of the solar heating system. It depends
+          on the volume of water and the temperature of the water that will be
+          consumed.
+        </p>
+      </div>
+      <div class="col-md">
+        <img src="img/load.svg" class="img-fluid" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-5 bg-secondary text-light" id="contactMe">
+  <div class="container">
+    <h1>Contact Me</h1>
+    <div class="row my-5">
+      <div class="col-md-6 col">
+        <form action="/contactMe" method="POST">
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control opacity-75"
+              placeholder="Your name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control opacity-75"
+              placeholder="Your email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <textarea
+              class="form-control opacity-75"
+              rows="10"
+              placeholder="What is your message..."
+              name="message"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="p-5 bg-dark text-white text-center position-relative">
+  <div class="container">
+    <p class="lead">Copyright &copy; 2021 EUCALC</p>
+  </div>
+</footer>

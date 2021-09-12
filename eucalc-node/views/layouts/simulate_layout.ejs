@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="img/ICON/res/mipmap-mdpi/ic_launcher.png"
+      type="image/png"
+    />
+
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+
+    <!-- bootsrap icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+
+    <!-- mapquest cdn -->
+    <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-maps.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest-maps.css"
+    />
+
+    <title>Eucalc</title>
+  </head>
+  <body>
+    <%- include('../partials/messages.ejs') %> <%-
+    include('simulate_navbar.ejs') %> <%- body %>
+
+    <!-- bootstrap js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+      integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- internal script -->
+    <script>
+      $(document).ready(function (event) {
+        const lat = $("#lat").val() || "";
+        const lng = $("#lng").val() || "";
+
+        L.mapquest.key = "bSxPGCeTAo29blagmCwP4F2xiJgL2YNh";
+
+        const map = L.mapquest.map("map", {
+          center: [lat !== "" ? lat : -1.3, lng !== "" ? lng : 118],
+          layers: L.mapquest.tileLayer("map"),
+          zoom: 4,
+        });
+
+        const marker = L.marker([0, 0], {
+          icon: L.mapquest.icons.marker(),
+        });
+
+        if (lat !== "" && lng !== "") {
+          marker.setLatLng([lat, lng]).addTo(map);
+        }
+
+        map.on("click", (e) => {
+          marker.setLatLng([e.latlng.lat, e.latlng.lng]).addTo(map);
+
+          $("#lat").val(e.latlng.lat.toFixed(2));
+          $("#lng").val(e.latlng.lng.toFixed(2));
+          $("#formNasa").submit();
+          $(".spinner-border").removeClass("d-none");
+          $(".bi-search").addClass("d-none");
+        });
+      });
+
+      function showLoading() {
+        $(".spinner-border").removeClass("d-none");
+        $(".bi-search").addClass("d-none");
+      }
+    </script>
+  </body>
+</html>

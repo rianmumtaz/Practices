@@ -1,0 +1,118 @@
+<%- include ('../partials/messages') %>
+<div class="row mt-3 justify-content-center">
+  <div class="col">
+    <form action="/pelamar/page" method="GET">
+      <div class="row align-items-end justify-content-center">
+        <div class="col-3">
+          <label class="form-label" for="inputSearch">Search by name:</label>
+          <input
+            class="form-control"
+            type="search"
+            placeholder="search"
+            name="inputSearch"
+            id="inputSearch"
+            value="<%= typeof inputSearch != 'undefined' ? inputSearch : '' %>"
+          />
+        </div>
+        <div class="col-2">
+          <label class="form-label" for="dateBefore">From:</label>
+          <input
+            class="form-control"
+            type="date"
+            name="dateBefore"
+            id="dateBefore"
+            value="<%= typeof dateBefore != 'undefined' ? dateBefore : '' %>"
+          />
+        </div>
+        <div class="col-2">
+          <label class="form-label" for="dateAfter">Until:</label>
+          <input
+            class="form-control"
+            type="date"
+            name="dateAfter"
+            id="dateAfter"
+            value="<%= typeof dateAfter != 'undefined' ? dateAfter : '' %>"
+          />
+        </div>
+        <div class="col-2">
+          <label class="form-label" for="sortBtn">Sort By:</label>
+          <select class="form-select" id="sortBtn" name="sortBtn">
+            <option value="1" <%if(typeof sortBtn!='undefined'&&sortBtn==="1"){%>selected<%}%>>Asc</option>
+            <option value="-1" <%if(typeof sortBtn!='undefined'&&sortBtn==="-1"){%>selected<%}%>>Desc</option>
+          </select>
+        </div>
+        <div class="col-2">
+          <label class="form-label" for="showLimit">Show:</label>
+          <select class="form-select" id="showLimit" name="showLimit">
+            <option value="2" <%if(typeof showLimit!='undefined'&&showLimit==="2"){%>selected<%}%>>2</option>
+            <option value="5" <%if(typeof showLimit!='undefined'&&showLimit==="5"){%>selected<%}%>>5</option>
+            <option value="7" <%if(typeof showLimit!='undefined'&&showLimit==="7"){%>selected<%}%>>7</option>
+            <option value="10" <%if(typeof showLimit!='undefined'&&showLimit==="10"){%>selected<%}%>>10</option>
+          </select>
+        </div>
+        <div class="col-1">
+          <button class="btn btn-outline-success" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row justify-content-end mb-3 mt-5">
+  <div class="col-3">
+    <a class="btn btn-primary" href="/pelamar/add">Add</a>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date of Birth</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (typeof pelamars!='undefined'&&pelamars.length > 0) {pelamars.forEach((pelamar, i) => { %>
+        <tr>
+          <td><%= pelamar.name %></td>
+          <td><%= pelamar.dob.toUTCString().substr(0,16) %></td>
+          <td>
+            <button
+              class="btn btn-success"
+              data-name="<%= pelamar.name %>"
+              data-dob="<%= pelamar.dob.toUTCString().substr(0,16) %>"
+              data-newurl="/pelamar/edit/<%= pelamar._id %>"
+              id="pelamar<%= i %>"
+              onclick="myModalPelamar(this.id)"
+            >
+              <i class="fas fa-info"></i>
+            </button>
+          </td>
+        </tr>
+        <% })} else { %>
+        <tr>
+          <td colspan="5" class="text-center">No entry can be displayed</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <div class="row">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <% if (typeof pelamars!='undefined'&&pelamars.length > 0) {%>
+            <% for (let i = 0; i < nop; i++) {%>
+          <li class="page-item
+          <%if ( typeof page != 'undefined' && page == i ){%>
+            active
+          <%}%>">
+            <a class="page-link" href="/pelamar/page?page=<%= i %>&inputSearch=<%= inputSearch %>&dateBefore=<%= dateBefore %>&dateAfter=<%= dateAfter %>&sortBtn=<%= sortBtn %>&showLimit=<%= showLimit %>&nop=<%= nop %>"><%= i+1 %></a>
+          </li>
+          <% } %> <%} else { %> <% } %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

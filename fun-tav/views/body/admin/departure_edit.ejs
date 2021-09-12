@@ -1,0 +1,160 @@
+<div class="container">
+  <h1 class="my-5">Edit Departure</h1>
+
+  <form action="/admin/departure/edit/<%= departure._id %>?_method=PUT" method="POST">
+    <div class="row">
+      <div class="col-4 border-end border-2">
+        <h4>Price</h4>
+        <p><strong>Adult</strong></p>
+
+        <label class="form-label">Twin Sharing</label>
+
+        <input type="text" name="adult_twin" class="form-control mb-3" <% if
+        (departure.price.adult.twin === "Not available") { %> value="<%=
+        departure.price.adult.twin %>" <% } else { %> value="<%=
+        departure.price.adult.twin.substr(3) %>" <% } %> />
+
+        <label class="form-label">Single</label>
+
+        <input type="text" required name="adult_single" class="form-control mb-3" <% if
+        (departure.price.adult.single === "Not available") { %> value="<%=
+        departure.price.adult.single %>" <% } else { %> value="<%=
+        departure.price.adult.single.substr(3) %>" <% } %> />
+
+        <p><strong>Kids</strong></p>
+
+        <label class="form-label">Twin Sharing</label>
+
+        <input type="text" name="kids_twin" class="form-control mb-3" <% if
+        (departure.price.kids.twin === "Not available") { %> value="<%=
+        departure.price.kids.twin %>" <% } else { %> value="<%=
+        departure.price.kids.twin.substr(3) %>" <% } %> />
+
+        <label class="form-label">Extra Bed</label>
+
+        <input type="text" name="kids_extra" class="form-control mb-3" <% if
+        (departure.price.kids.extra === "Not available") { %> value="<%=
+        departure.price.kids.extra %>" <% } else { %> value="<%=
+        departure.price.kids.extra.substr(3) %>" <% } %> />
+
+        <label class="form-label">No Bed</label>
+
+        <input type="text" name="kids_no_bed" class="form-control mb-3" <% if
+        (departure.price.kids.no_bed === "Not available") { %> value="<%=
+        departure.price.kids.no_bed %>" <% } else { %> value="<%=
+        departure.price.kids.no_bed.substr(3) %>" <% } %> />
+
+        <p><strong>Others</strong></p>
+
+        <label class="form-label">Airport Tax and Fuel</label>
+
+        <input type="text" name="airport" class="form-control mb-3" <% if
+        (departure.price.other.airport === "Included") { %> value="<%=
+        departure.price.other.airport %>" <% } else { %> value="<%=
+        departure.price.other.airport.substr(3) %>" <% } %> />
+
+        <label class="form-label">Visa</label>
+
+        <input type="text" name="visa" class="form-control mb-3" <% if
+        (departure.price.other.visa === "Not available") { %> value="<%=
+        departure.price.other.visa %>" <% } else { %> value="<%=
+        departure.price.other.visa.substr(3) %>" <% } %> />
+
+        <label class="form-label">Ppn</label>
+
+        <input type="text" name="ppn" class="form-control mb-3" value="<%= departure.price.other.ppn %>" />
+      </div>
+      <div class="col-8">
+        <div class="row border-bottom border-2 pb-3">
+          <div class="col-6">
+            <h4>Availability</h4>
+            <input type="number" class="form-control mb-3" name="availability" required min="1" value="<%= departure.availability %>" />
+            <h4>Recommended</h4>
+            <div class="form-check">
+              <% if (departure.recommended) { %>
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" name="recommended" checked />
+              <% } else { %>
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" name="recommended" />
+              <% } %>
+
+              <label class="form-check-label" for="exampleCheck1">Yes</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <h4>Destination</h4>
+            <% if (destinations.length > 0) { %>
+            <select name="destination" class="form-select mb-3">
+              <% destinations.forEach(element => { %>
+              <option value="<%= element._id %>" <% if (element._id == departure.destination.toString()) { %> selected <% } %>>
+                <%= element.place.name %>
+              </option>
+              <% }) %>
+            </select>
+            <% } else { %>
+            <select name="destination" class="form-select">
+              <option value="none" selected>None</option>
+            </select>
+            <% } %>
+            <h4>Departure Title</h4>
+            <input type="text" class="form-control mb-3" name="title" required value="<%= departure.title %>" />
+          </div>
+        </div>
+        <div class="row mt-3 align-items-center">
+          <input type="hidden" id="no_itineraries" name="no_itineraries" value="<%=departure.itinerary.length%>" />
+          <div class="col-6">
+            <h4>Itineraries</h4>
+          </div>
+          <div class="col-6">
+            <button type="button" class="btn btn-danger" id="delete">-</button>
+            <button type="button" class="btn btn-success" id="add">+</button>
+          </div>
+        </div>
+        <div class="itineraries mt-3">
+        <% departure.itinerary.forEach((element, i) => {%>
+            <div class="border mb-3 p-3 itinerary<%=element.day%>">
+            <input type="text" name="title<%=element.day%>" class="form-control mb-3" required placeholder="Itinerary Title" value="<%=element.title%>"/>
+            <div class="row mb-3">
+              <div class="col-4">
+                <label class="form-label">Hari ke</label>
+                <input type="number" readonly value="<%=element.day%>" name="day<%=element.day%>" class="form-control" required />
+              </div>
+              <div class="col-8">
+                <label class="form-label">Tanggal</label>
+                <input type="date" name="date<%=element.day%>" class="form-control" required value="<%= dateArr[i] %>"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <textarea name="description<%=element.day%>" class="form-control" rows="3" placeholder="Description" required><%= element.description %></textarea>
+              </div>
+              <div class="col-6">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="breakfast<%=element.day%>" name="breakfast<%=element.day%>" 
+                  <% if (element.eat.breakfast) { %> checked <% } %>/>
+                  <label class="form-check-label" for="breakfast<%=element.day%>">Breakfast</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="lunch<%=element.day%>" name="lunch<%=element.day%>" <% if (element.eat.lunch) { %> checked <% } %>/>
+                  <label class="form-check-label" for="lunch<%=element.day%>">Lunch</label>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="dinner<%=element.day%>" name="dinner<%=element.day%>" <% if (element.eat.dinner) { %> checked <% } %>/>
+                  <label class="form-check-label" for="dinner<%=element.day%>">Dinner</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%})%>
+        </div>
+      </div>
+    </div>
+    <div class="row my-3 justify-content-end">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Edit</button>
+        <a type="button" class="btn btn-secondary" href="/admin/departure">
+          Cancel
+        </a>
+      </div>
+    </div>
+  </form>
+</div>

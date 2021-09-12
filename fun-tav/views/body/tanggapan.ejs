@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="card m-5">
+    <div class="card-header">
+      <h3>Send Us Feedback</h3>
+      <p>Kami menghargai semua saran dan masukan anda</p>
+    </div>
+    <div class="card-body">
+      <form action="/page/tanggapan" method="POST">
+        <div class="row mb-3">
+          <div class="col-3">
+            <select name="title" class="form-select">
+              <option value="Mr.">Mr.</option>
+              <option value="Mrs.">Mrs.</option>
+              <option value="Ms.">Ms.</option>
+            </select>
+          </div>
+          <div class="col-9">
+            <input
+              class="form-control"
+              type="text"
+              name="name"
+              placeholder="Name"
+              required
+            />
+          </div>
+        </div>
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          class="form-control mb-3"
+          required
+        />
+        <textarea
+          class="form-control mb-3"
+          name="message"
+          rows="10"
+          placeholder="Message"
+          required
+        ></textarea>
+        <div class="row justify-content-end">
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

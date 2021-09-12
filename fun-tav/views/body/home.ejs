@@ -1,0 +1,188 @@
+<!-- special offer -->
+<section>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="#">
+          <img src="images/promo/promo1.jpg" class="d-block w-100" alt="..." />
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="#">
+          <img src="images/promo/promo2.jpg" class="d-block w-100" alt="..." />
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="#">
+          <img src="images/promo/promo3.jpg" class="d-block w-100" alt="..." />
+        </a>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<!-- recommendation packages -->
+<section class="mt-5">
+  <div class="container">
+    <h3 class="text-center mb-5">Rekomendasi Liburan</h3>
+    <% if (departures.length > 0) { %>
+    <div class="row g-5">
+      <% departures.forEach(departure=> { %>
+        <div class="col-lg-3 col-sm-6 col-auto">
+          <a
+            href="/liburan/departure/<%= departure._id %>"
+            class="text-decoration-none text-dark"
+          >
+            <div class="card">
+              <img
+                src="images/destination/west_europe.jpg"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title"><%= departure.price.total %></h5>
+                <p class="card-text"><%= departure.title %></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% }) %>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <% if (typeof departure_datas !== "undefined" && departure_datas > 4) { %>
+        <div class="col-auto">
+          <a href="/page/rekomendasi" class="btn btn-warning">Lihat Semua</a>
+        </div>
+      <% } %>
+    </div>
+    <% } else { %>
+    <p class="text-center">Belum ada produk yang tersedia</p>
+    <% } %>
+  </div>
+</section>
+
+<!-- other destination -->
+<section class="mt-5 border-top border-2 pt-4">
+  <div class="container">
+    <h3 class="text-center mb-5">Destinasi Lainnya</h3>
+    <% if (destinations.length > 0) { %>
+    <div class="row g-5">
+      <% destinations.forEach(destination=> { %>
+      <div class="col-lg-3 col-sm-6 col-auto">
+        <a href="/liburan/destination/<%= destination._id %>" class="text-dark">
+          <div class="card">
+            <img src="images/destination/west_europe.jpg" class="card-img" alt="...">
+            <div class="card-img-overlay bg-dark bg-opacity-25">
+              <h5 class="card-title text-light">
+                <%= destination.place.name %>
+              </h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% }) %>
+    </div>
+    <div class="row justify-content-center mt-5">
+      <% if (typeof destination_datas !== "undefined" && destination_datas > 4) { %>
+        <div class="col-auto">
+          <a href="/liburan" class="btn btn-warning">Lihat Semua</a>
+        </div>
+      <% } %>
+    </div>
+    <% } else { %>
+    <p class="text-center">Saat ini belum ada destinasi yang tersedia</p>
+    <% } %>
+  </div>
+</section>
+
+<!-- newsletter -->
+<section class="mt-5 bg-warning pt-3 bg-opacity-50">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-sm-6 col-auto">
+        <h4>Dapatkan berita terbaru kami</h4>
+        <p>
+          Daftarkan segera alamat email Anda untuk menerima inspirasi perjalanan
+          tak terlupakan dari FUNTAV
+        </p>
+      </div>
+      <div class="col-sm-6 col-auto">
+        <form action="/newsletter" method="POST">
+          <div class="input-group">
+            <input type="email" name="email" class="form-control" required />
+            <button type="submit" class="btn btn-dark text-light input-group-text">
+              Berlangganan
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tentang Kami -->
+<section class="mt-5">
+  <div class="container">
+    <h5 class="text-center">
+      FUNTAV, Sahabat Berlibur Anda Sejak Negara Api Menyerang
+    </h5>
+    <div class="row justify-content-center my-3">
+      <div class="col-auto">
+        <a href="/page/tentang_kami" class="btn btn-warning">Tentang Kami</a>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-5 g-5">
+      <div class="col-lg-3 col-sm-6 col-auto">
+        <div class="row justify-content-center mb-2">
+          <div class="col-auto"><i class="fas fa-user-tie fa-3x"></i></div>
+        </div>
+        <h6 class="text-center mb-4">Kualitas Pelayanan</h6>
+        <p class="text-center">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam
+          dolores inventore consequatur, non ut necessitatibus illo dolore
+          deserunt magnam temporibus.
+        </p>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-auto">
+        <div class="row justify-content-center mb-2">
+          <div class="col-auto"><i class="fas fa-map fa-3x"></i></div>
+        </div>
+        <h6 class="text-center mb-4">Mudah & Efisien</h6>
+        <p class="text-center">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati
+          aut ut cupiditate ipsam modi sed maxime illo fugiat eum beatae!
+        </p>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-auto">
+        <div class="row justify-content-center mb-2">
+          <div class="col-auto"><i class="fas fa-medal fa-3x"></i></div>
+        </div>
+        <h6 class="text-center mb-4">Terbaik</h6>
+        <p class="text-center">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore a
+          blanditiis omnis vitae aperiam eos, quaerat fugiat rerum voluptas
+          quod.
+        </p>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-auto">
+        <div class="row justify-content-center mb-2">
+          <div class="col-auto"><i class="fas fa-shipping-fast fa-3x"></i></i></div>
+        </div>
+        <h6 class="text-center mb-4">Berpengalaman</h6>
+        <p class="text-center">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
+          magni vitae exercitationem culpa alias tempora ullam similique,
+          delectus consectetur neque!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

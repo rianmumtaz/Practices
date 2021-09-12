@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- bootstrap icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+
+    <!-- internal css -->
+    <link rel="stylesheet" href="style/style.css" />
+    <title>Relearn</title>
+  </head>
+  <body>
+    <%- include('../partials/messages-index.ejs'); %><%-
+    include('../partials/modal-index.ejs'); %> <%-
+    include('../partials/nav-index.ejs'); %> <%-body%>
+
+    <!-- bootstrap js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- internal script -->
+    <script>
+      $(document).ready(function (event) {
+        //jika ada class .toast akan tampil, tapi jika tidak ada gpp
+        $(".toast").toast("show");
+
+        //btn register
+        $("#btnRegister").click(function () {
+          $(".modal-title").text("Register");
+          $("#form-index").attr("action", "/register");
+          $(".modal-body").html(
+            '<div class="mb-3"><label for="email" class="form-label">Email</label><input type="email" class="form-control" name="email" id="email" required/></div><div class="mb-3"><label for="password" class="form-label">Password</label><input type="password" class="form-control" name="password" id="password" required maxlength="50"/></div><div class="mb-3"><label for="password1" class="form-label">Confirm Password</label><input type="password" class="form-control" name="password1" id="password1" required maxlength="50"/></div>'
+          );
+          $("#btnSubmit").text("Register");
+          $("#modal-index").modal("show");
+        });
+
+        //btn login
+        $("#btnLogin").click(function () {
+          $(".modal-title").text("Login");
+          $("#form-index").attr("action", "/login");
+          $(".modal-body").html(
+            '<div class="mb-3"><label for="email" class="form-label">Email</label><input type="email" class="form-control" name="email" id="email" required/></div><div class="mb-3"><label for="password" class="form-label">Password</label><input type="password" class="form-control" name="password" id="password" required maxlength="50"/></div>'
+          );
+          $("#btnSubmit").text("Login");
+          $("#modal-index").modal("show");
+        });
+      });
+    </script>
+  </body>
+</html>

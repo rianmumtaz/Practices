@@ -1,0 +1,51 @@
+EUCALC: Solar Water Heater Calculator
+
+EUCALC is a calculator designed to simulate a simple solar water heating system for both residential and commercial use.
+
+It requires an input of monthly meteorological data, solar water heating system configuration, solar collector model, and load profile to obtain monthly solar fraction.
+
+In this current version:
+1. The monthly meteorological data can be inputted manually or chosen from EUCALC's library which provides 15 different locations in Indonesia.
+2. The diffuse sky radiation model used is the isotropic sky model.
+3. The system configuration is a simple active-direct collector-tank-load configuration without a heat exchanger.
+4. The storage tank model used is a fully-mixed storage tank model.
+5. The calculation of the pipe, duct, and storage tank losses are simply an addition to the load value.
+6. The collector model is only suited for glazed flat plate solar collector type.
+7. The method used to calculate the monthly solar fraction is the F-chart method by Klein, Beckman, and Duffie.
+
+On the collector model selection, you can either use the collector model provided by the EUCALC library or input it manually.
+
+Instead of choosing an available collector model, one key feature provided by EUCALC as an advantage from other applications or pc software is its ability to let you design a solar collector model that suits your need. The testing method used in the designing step is in accordance with the ASHRAE 93-2003 standard.
+
+EUCALC's location library (based on the NASA Prediction Of Worldwide Energy Recources):
+1. Indonesia-Aceh
+2. Indonesia-Ambon
+3. Indonesia-Balikpapan
+4. Indonesia-Bandar Lampung
+5. Indonesia-Bandung
+6. Indonesia-Banyuwangi
+7. Indonesia-Bengkulu
+8. Indonesia-Jakarta
+9. Indonesia-Kupang
+10. Indonesia-Mataram
+11. Indonesia-Pekanbaru
+12. Indonesia-Singkawang
+13. Indonesia-Tarakan
+14. Indonesia-Ternate
+15. Indonesia-Yogyakarta
+
+Model collector provided in the EUCALC library is an example. It is taken from ICC-SRCC™ CERTIFICATION & LISTING DIRECTORIES.
+
+NOTE:
+- You will experience delay or "screen freeze" in some part of the calculations because of the iteration process.
+- No endorsement of any products or services is expressed or implied.
+
+References:
+- Solar Engineering of Solar Processes 4th edition by John A. Duffie and William A. Beckman
+- A mathematical model of KOLEKTOR 2.2 reference handbook (3rd draft, 2009) by Ing. Tomas Matuska, Ph.D. and Ing. Vladimir Zmrhal, Ph.D., Czech Technical University in Prague.
+- ASHRAE 93-2003 Standard: Methods of Testing to Determine the Thermal Performance of Solar Collectors.
+
+Sources:
+- Solar Rating & Certification Corporation™ (ICC-SRCC™): http://www.solar-rating.org/
+- NASA Prediction Of Worldwide Energy Recources: https://power.larc.nasa.gov/
+- <a href="http://www.freepik.com">Designed by Freepik</a>
